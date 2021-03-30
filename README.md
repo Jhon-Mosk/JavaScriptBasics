@@ -1,1 +1,3 @@
-# JavaScriptBasics
+JavaScript Basic
+
+Учебный работы в ГикБрейнс в 2 четверти.
