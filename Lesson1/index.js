@@ -1,14 +1,13 @@
 function task1() {
     alert("Конвектор градусов Цельсия в градусы Фаренгейта");
-    // var degreesCelsius;
-    for (let i = 3; i > 0; i++) {
-        var degreesCelsius = prompt("Введите градусы Цельсия");
-        if (degreesCelsius <= 0 || degreesCelsius >= 0) {
-            var degreesFahrenheit = (9 / 5) * degreesCelsius + 32;
-            alert("Температура по Фаренгейту равна: " + degreesFahrenheit);
-            break;
-        }
-    }
+    var degreesCelsius;
+    
+    do {
+        degreesCelsius = +prompt("Введите градусы Цельсия");
+    } while ( isNaN(degreesCelsius));
+
+    var degreesFahrenheit = (9 / 5) * degreesCelsius + 32;
+    alert("Температура по Фаренгейту равна: " + degreesFahrenheit);    
 }
 
 function task2() {
