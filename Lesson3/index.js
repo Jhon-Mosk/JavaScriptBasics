@@ -41,11 +41,11 @@ function task3() {
     }
 }
 
-function task4() {   
-    let width = 5;
+function task4() {  
+    let size = +prompt("Введите высоту пирамиды");
     let arr = [];
     let space  = 0;
-    for(let i = width; i > 0; i--) {        
+    for(let i = size; i > 0; i--) {        
         arr[i] = [];
         for (var j = 0; j < i; j++) {                        
             arr[i][j+space]= 'x';            
