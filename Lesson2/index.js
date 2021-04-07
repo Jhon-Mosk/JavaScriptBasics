@@ -9,7 +9,7 @@ function task1() {
     c = (2 + ++a);
     alert('c = (2 + ++a) = ' + c + ' : так как а = 2 и происходит инкреминтация, а потом сложение'); // 5 : так как а = 2 и происходит инкреминтация, а потом сложение
     d = (2 + b++);
-    alert('d = (2 + b++) = ' + d + ' : так как b = 1 и происходит инкреминтация, а потом сложение'); // 4 : так как b = 1 и происходит инкреминтация, а потом сложение
+    alert('d = (2 + b++) = ' + d + ' : так как b = 2 и происходит инкреминтация, а потом сложение'); // 4 : так как b = 1 и происходит инкреминтация, а потом сложение
     alert('a = ' + a + ' : так как инкреминтация произашла два раза'); // 3 : так как инкреминтация произашла два раза
     alert('b = ' + b + ' : так как инкреминтация произашла два раза'); // 3 : так как инкреминтация произашла два раза
 }
@@ -83,17 +83,17 @@ function task4() {
 
 function task5() {
     alert('Функции объявлены');
-    function addition(arg1, arg2) {
+    function sum(arg1, arg2) {
         return arg1 + arg2;
     }
 
-    function subtraction(arg1, arg2) {
+    function subtract(arg1, arg2) {
         return arg1 - arg2;
     }
-    function multiplication(arg1, arg2) {
+    function multiply(arg1, arg2) {
         return arg1 * arg2;
     }
-    function division(arg1, arg2) {
+    function split(arg1, arg2) {
         return arg1 / arg2;
     }
 }
@@ -104,38 +104,38 @@ function task6() {
     do {
         arg1 = +prompt('Введите первое число');
         arg2 = +prompt('Введите второе число');
-        operation = prompt('Введите название операции:\naddition - сложение\nsubtraction - вычетание\nmultiplication - умножение\ndivision - деление');
-    } while (isNaN(arg1) || isNaN(arg2) && (operation !== 'addition' || operation !== 'subtraction' || operation !== 'multiplication' || operation !== 'division'));
+        operation = prompt('Введите название операции:\nsum - сложение\nsubtract - вычетание\nmultiply - умножение\nsplit - деление');
+    } while (isNaN(arg1) || isNaN(arg2) && (operation !== 'sum' || operation !== 'subtract' || operation !== 'multiply' || operation !== 'split'));
 
     mathOperation(arg1, arg2, operation);
 
-    function addition(arg1, arg2) {
+    function sum(arg1, arg2) {
         return arg1 + arg2;
     }
 
-    function subtraction(arg1, arg2) {
+    function subtract(arg1, arg2) {
         return arg1 - arg2;
     }
-    function multiplication(arg1, arg2) {
+    function multiply(arg1, arg2) {
         return arg1 * arg2;
     }
-    function division(arg1, arg2) {
+    function split(arg1, arg2) {
         return arg1 / arg2;
     }
 
     function mathOperation(arg1, arg2, operation) {        
         switch (operation) {
-            case 'addition':                               
-                alert(addition(arg1, arg2));
+            case 'sum':                               
+                alert(sum(arg1, arg2));
                 break;
-            case 'subtraction':
-                alert(subtraction(arg1, arg2));
+            case 'subtract':
+                alert(subtract(arg1, arg2));
                 break;
-            case 'multiplication':
-                alert(multiplication(arg1, arg2));
+            case 'multiply':
+                alert(multiply(arg1, arg2));
                 break;
-            case 'division':
-                alert(division(arg1, arg2));
+            case 'split':
+                alert(split(arg1, arg2));
                 break;
         }
     }
