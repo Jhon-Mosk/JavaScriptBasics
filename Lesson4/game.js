@@ -15,10 +15,10 @@ const config = {
  */
 const player = {
     x: 0,
-    y: 0,    
+    y: 0,
     moveHistory: [{ // история ходов
         x: 0,
-        y: 0,            
+        y: 0,
     }],
 
     /**
@@ -27,7 +27,7 @@ const player = {
      */
     move(nextPoint) {
         this.x = nextPoint.x;
-        this.y = nextPoint.y;        
+        this.y = nextPoint.y;
     },
 };
 
@@ -99,12 +99,12 @@ let mover = {
             let n = prompt("Введите номер хода, который хотите увидеть. Для выхода х");
 
             if (n == 'x' || n == 'х') { //если номер хода х - тогда выходим
-                break;                
-            } else if (parseInt(n) < 0 || isNaN(parseInt(n)) || parseInt(n) > player.moveHistory.length-1) {
+                break;
+            } else if (parseInt(n) < 0 || isNaN(parseInt(n)) || parseInt(n) > player.moveHistory.length - 1) {
                 alert("Такого хода не существует") //если номер хода отрицательный или строка или больше существующих ходов, выводим предупреждение
                 continue; //и возвращаемся к запросу номера хода
             } else {
-                renderer.clear();  
+                renderer.clear();
                 player.move(player.moveHistory[parseInt(n)]); //достаём из истории положение игрока
                 renderer.render(); //если все проверки пройдены выводим положение игрока на этом ходе
                 continue; //и возвращаемся к запросу номера хода
@@ -115,42 +115,42 @@ let mover = {
     checkTruePosition(direction) { //проверка не вышел ли игрок за поле
         const nextPosition = {
             x: player.x,
-            y: player.y,            
+            y: player.y,
         };
-        
+
         switch (direction) {
-            case 's':                
+            case 's':
                 nextPosition.y++;
                 if (nextPosition.y >= 0 && nextPosition.y < config.rowsCount) {
                     return direction; //если в пределах поля возвращаем направление
                 } else { //если вышел за пределы поля, используем рекурсию и мучаем пока не вернётся на поле или не сдасться:)
                     return mover.checkTruePosition(mover.truePositionFalse(direction));
                 }
-            case 'a':
-                nextPosition.x--;
-                if (nextPosition.x >= 0 && nextPosition.x < config.colsCount) {
-                    return direction; //если в пределах поля возвращаем направление
-                } else { //если вышел за пределы поля, используем рекурсию и мучаем пока не вернётся на поле или не сдасться:)
-                    return mover.checkTruePosition(mover.truePositionFalse(direction));
-                }                
-            case 'd':
-                nextPosition.x++;
-                if (nextPosition.x >= 0 && nextPosition.x < config.colsCount) {
-                    return direction; //если в пределах поля возвращаем направление
-                } else { //если вышел за пределы поля, используем рекурсию и мучаем пока не вернётся на поле или не сдасться:)
-                    return mover.checkTruePosition(mover.truePositionFalse(direction));
-                }                
-            case 'w':
-                nextPosition.y--;
-                if (nextPosition.y >= 0 && nextPosition.y < config.rowsCount) {
-                    return direction; //если в пределах поля возвращаем направление
-                } else { //если вышел за пределы поля, используем рекурсию и мучаем пока не вернётся на поле или не сдасться:)
-                    return mover.checkTruePosition(mover.truePositionFalse(direction));
-                }                
-            case 'n':
-                return direction;  //возвращаем n
-        };               
-        
+                case 'a':
+                    nextPosition.x--;
+                    if (nextPosition.x >= 0 && nextPosition.x < config.colsCount) {
+                        return direction; //если в пределах поля возвращаем направление
+                    } else { //если вышел за пределы поля, используем рекурсию и мучаем пока не вернётся на поле или не сдасться:)
+                        return mover.checkTruePosition(mover.truePositionFalse(direction));
+                    }
+                    case 'd':
+                        nextPosition.x++;
+                        if (nextPosition.x >= 0 && nextPosition.x < config.colsCount) {
+                            return direction; //если в пределах поля возвращаем направление
+                        } else { //если вышел за пределы поля, используем рекурсию и мучаем пока не вернётся на поле или не сдасться:)
+                            return mover.checkTruePosition(mover.truePositionFalse(direction));
+                        }
+                        case 'w':
+                            nextPosition.y--;
+                            if (nextPosition.y >= 0 && nextPosition.y < config.rowsCount) {
+                                return direction; //если в пределах поля возвращаем направление
+                            } else { //если вышел за пределы поля, используем рекурсию и мучаем пока не вернётся на поле или не сдасться:)
+                                return mover.checkTruePosition(mover.truePositionFalse(direction));
+                            }
+                            case 'n':
+                                return direction; //возвращаем n
+        };
+
     },
 
     truePositionFalse(direction) { //если игрок вышел за пределы поля
@@ -168,24 +168,24 @@ let mover = {
         // Следующая точка игрока, в самом начале в точке будут текущие координаты игрока.
         const nextPosition = {
             x: player.x,
-            y: player.y,            
+            y: player.y,
         };
         // Определяем направление и обновляем местоположение игрока в зависимости от направления.
         switch (direction) {
             case 's':
-                nextPosition.y++;                
+                nextPosition.y++;
                 player.moveHistory.push(nextPosition);
                 break;
             case 'a':
-                nextPosition.x--;                
+                nextPosition.x--;
                 player.moveHistory.push(nextPosition);
                 break;
             case 'd':
-                nextPosition.x++;               
+                nextPosition.x++;
                 player.moveHistory.push(nextPosition);
                 break;
             case 'w':
-                nextPosition.y--;                
+                nextPosition.y--;
                 player.moveHistory.push(nextPosition);
                 break;
             case 'n':
@@ -210,6 +210,7 @@ let game = {
             // Если игрок сказал что хочет выйти, то игра заканчивается.
             if (direction === null) {
                 console.log("Игра окончена.");
+                game.clearBoard(); //удаляем кнопку играть
                 return;
             }
             // Получаем следующую точку пользователя в зависимости от направления.
@@ -220,15 +221,16 @@ let game = {
             renderer.render();
 
         }
-    },    
+    },
 
+    clearBoard() {
+        document.getElementById("game").remove(); //удаляем кнопку играть
+    },
     // Этот метод выполняется при открытии страницы.
     init() {
         console.log("Ваше положение на поле в виде о.");
         // Отображаем нашу игру.
         renderer.render();
-        console.log("Чтобы начать игру наберите game.run() и нажмите Enter.");        
+        console.log("Чтобы начать игру наберите game.run() и нажмите Enter.");
     }
 };
-
-game.init();

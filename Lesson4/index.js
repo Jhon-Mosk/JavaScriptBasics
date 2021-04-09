@@ -39,21 +39,13 @@ function task1() {
 }
 
 function task2() {
-    let shirt = {color:'red', size:'M', price:1500};
-    let jeans = {color:'blue', size:56, price:2500};
-    let cap = {color:'black', size:40, price:500};
-    let sneakers = {color:'yellow', size:41, price:5000};
-    var cart = [shirt, jeans, cap, sneakers];
-
-    board.innerHTML = calculateCost(cart);
-
-    function calculateCost(cart) {
-        let cost = 0;
-        for (let i in cart) {            
-            cost += cart[i].price;            
-        }
-        return cost;
-    }
+    game.init();
+    let btm = document.createElement('button');
+    btm.className = "button__game";
+    btm.id = "game";
+    btm.innerHTML = "Играть";
+    board.append(btm);
+    document.getElementById('game').onclick = game.run;
 }
 
 function task3() {    
