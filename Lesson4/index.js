@@ -49,27 +49,9 @@ function task2() {
 }
 
 function task3() {    
-    for(let i = 0; i <= 9; board.innerHTML += i++ + ' ') {
-
-    }
-}
-
-function task4() {  
-    let size = +prompt("Введите высоту пирамиды");
-    let arr = [];
-    let space  = 0;
-    for(let i = size; i > 0; i--) {        
-        arr[i] = [];
-        for (var j = 0; j < i; j++) {                        
-            arr[i][j+space]= 'x';            
-        }
-        arr[i][j+space] = "<br \/>";
-        space++;
-    }
-    board.innerHTML = arr;    
+    
 }
 
 document.getElementById("task1").onclick = task1;
 document.getElementById("task2").onclick = task2;
 document.getElementById("task3").onclick = task3;
-document.getElementById("task4").onclick = task4;
