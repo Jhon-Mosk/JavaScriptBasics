@@ -49,7 +49,7 @@ function task2() {
 }
 
 function task3() {    
-    
+    millionaire.start();
 }
 
 document.getElementById("task1").onclick = task1;
