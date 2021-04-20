@@ -1,0 +1,22 @@
+.content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.product {
+    max-width: 400px;
+}
+
+.product__item {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid;
+}
+
+.product__item__price {
+    padding-bottom: 20px;
+}
+
+.cart__total {
+    display: none;
+}
