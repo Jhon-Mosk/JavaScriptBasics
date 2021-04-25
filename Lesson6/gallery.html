@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Урок 6 • Обработка событий в JavaScript • Событие нажатия</title>
+    <link rel="stylesheet" type="text/css" href="gallery.css">
+    <script type="text/javascript" src="gallery.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>Урок 6 • Обработка событий в JavaScript • Событие нажатия</h1>
+        <a href="index.html">На главную</a>
+    </div>
+    <div class="content">
+        <div class="gallery__wrap">            
+            <a class="gallery__control gallery__control_left" id="leftControl" href="#" role="button">
+                <svg class="gallery__control__arrow" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'>
+                    <path d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z' />
+                </svg>
+            </a>
+            <div class="gallery">
+                <img id="image-1" src="https://picsum.photos/seed/1/800" data-seed="1" alt="Изображение 1">
+            </div>
+            <a class="gallery__control gallery__control_right" id="rightControl" href="#" role="button">
+                <svg class="gallery__control__arrow" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'>
+                    <path d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z' />
+                </svg>
+            </a>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="thumbnails">
+            <img id="image-thumbnail-1" src="https://picsum.photos/seed/1/150?blur" data-seed="1" alt="Миниатюра изображения 1">
+            <img id="image-thumbnail-2" src="https://picsum.photos/seed/2/150?blur" data-seed="2" alt="Миниатюра изображения 2">
+            <img id="image-thumbnail-3" src="https://picsum.photos/seed/3/150?blur" data-seed="3" alt="Миниатюра изображения 3">
+            <img id="image-thumbnail-4" src="https://picsum.photos/seed/4/150?blur" data-seed="#" alt="Миниатюра изображения 4">
+        </div>
+    </div>
+</body>
+</html>
