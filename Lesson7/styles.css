@@ -25,7 +25,7 @@ html, body {
     color: rgb(233, 6, 6);
 }
 
-.board {
+.board {       
     display: grid;
     grid-template-rows: repeat(10, 1fr);
     grid-template-columns: repeat(10, 1fr);
