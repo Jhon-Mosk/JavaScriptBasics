@@ -1,15 +1,9 @@
-// 1. Создать функцию, генерирующую шахматную доску. При этом можно использовать любые
-//  html-теги по своему желанию. Доска должна быть разлинована соответствующим образом,
-//   т.е. чередовать черные и белые ячейки. Строки должны нумероваться числами от 1 до 8,
-//    столбцы – латинскими буквами A, B, C, D, E, F, G, H.
-// 2. Заполнить созданную таблицу буквами, отвечающими за шахматную фигуру, например
-//  К – король, Ф – ферзь и т.п., причем все фигуры должны стоять на своих местах и
-//   быть соответственно черными и белыми.
-// 3. *Заменить буквы, обозначающие фигуры, картинками.
 let chessBoard = {
 
     size: 8, //размер шахматного поля
     pole: [],
+    descCell: [], //буквенные подписи к клеткам
+    descCellNumber: [], //цифровые подписи к клеткам
     figures: {//фигуры
         rookWhite1: {//Ладья - rook
             row: 7,
@@ -173,61 +167,54 @@ let chessBoard = {
         },
     },
 
+    
     fillPole() { //заполняем поле
-        // let cellResult = []; //само поле
-        let descCell = []; //буквенные подписи к клеткам
-        let descCellNumber = []; //цифровые подписи к клеткам
-
         for(let i = 0; i < chessBoard.size; i++) { //заполняем поле белыми и чёрными клеточками
             chessBoard.pole[i] = [];
             for(let j = 0; j < chessBoard.size; j++) {
                 let cell = document.createElement("div");//создаём клетку
+                chessBoard.fillPoleDesc(i, j);
                 if (i % 2 == 0) {//если чётная строка
                     if (j % 2 == 0) {//если чётная то белая
                         cell.className = "board-cell-white";//присваиваем класс
-                        chessBoard.pole[i][j] = cell;//записываем клетку в массив                                                               
                     } else {//если не чётная то чёрная
                         cell.className = "board-cell-black";//присваиваем класс
-                        chessBoard.pole[i][j] = cell;//записываем клетку в массив                                             
                     }
                 } else {//если не чётная строка
                     if (j % 2 == 0) {//если чётная то чёрная
                         cell.className = "board-cell-black";//присваиваем класс
-                        chessBoard.pole[i][j] = cell;//записываем клетку в массив                                            
                     } else {//если не чётная то белая
                         cell.className = "board-cell-white";//присваиваем класс
-                        chessBoard.pole[i][j] = cell;//записываем клетку в массив                                              
                     }
                 }
+                chessBoard.pole[i][j] = cell;//записываем клетку в массив
             }        
         }
+        
+        boardDesc.append(...chessBoard.descCell);//выводим буквы
+        boardDescNumber.append(...chessBoard.descCellNumber);//выводим цифры        
+    },
 
-        for(let i = 0; i < chessBoard.size; i++) { //подписываем поле           
-            for(let j = 0; j < chessBoard.size; j++) {                
-                if(i == 0 && j == 0) { //пустая клетка в верхнем левом углу
-                    let cell = document.createElement("div");
-                    cell.className = "board-desc__cell";
-                    descCell.push(cell);
-                }
+    fillPoleDesc(i, j) {
+        if(i == 0 && j == 0) { //пустая клетка в верхнем левом углу
+            let cell = document.createElement("div");
+            cell.className = "board-desc__cell";
+            chessBoard.descCell.push(cell);
+        }
 
-                if(i == 0) { //буквенные подписи
-                    let cell = document.createElement("div");//создаём клетку
-                    cell.className = "board-desc__cell";//присваиваем класс                   
-                    cell.insertAdjacentHTML("beforeend", "&#" + (65 + j));
-                    descCell.push(cell);               
-                }
-                
-                if(i >= 0 && j == 0) {//цифровые подписи
-                    let cell = document.createElement("div");//создаём клетку
-                    cell.className = "board-desc__cell";//присваиваем класс
-                    cell.innerHTML = i + 1;//задаём цифру
-                    descCellNumber.push(cell);//записываем в массив
-                }
-            }            
+        if(i == 0) { //буквенные подписи
+            let cell = document.createElement("div");//создаём клетку
+            cell.className = "board-desc__cell";//присваиваем класс                   
+            cell.insertAdjacentHTML("beforeend", "&#" + (65 + j));
+            chessBoard.descCell.push(cell);               
         }
         
-        boardDesc.append(...descCell);//выводим буквы
-        boardDescNumber.append(...descCellNumber);//выводим цифры        
+        if(i >= 0 && j == 0) {//цифровые подписи
+            let cell = document.createElement("div");//создаём клетку
+            cell.className = "board-desc__cell";//присваиваем класс
+            cell.innerHTML = i + 1;//задаём цифру
+            chessBoard.descCellNumber.push(cell);//записываем в массив
+        }
     },
 
     displayPole() {//выводим клеточки доски
