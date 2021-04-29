@@ -7,7 +7,6 @@
 const GAME_STATUS_STARTED = 'started';
 const GAME_STATUS_PAUSED = 'paused';
 const GAME_STATUS_STOPPED = 'stopped';
-const CHECK_START = 'check-start';
 
 const SNAKE_DIRECTION_UP = 'up';
 const SNAKE_DIRECTION_DOWN = 'down';
