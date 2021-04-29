@@ -7,6 +7,7 @@
 const GAME_STATUS_STARTED = 'started';
 const GAME_STATUS_PAUSED = 'paused';
 const GAME_STATUS_STOPPED = 'stopped';
+const CHECK_START = 'check-start';
 
 const SNAKE_DIRECTION_UP = 'up';
 const SNAKE_DIRECTION_DOWN = 'down';
@@ -23,13 +24,28 @@ const config = {
     size: 10
 };
 
+const timer = {
+    tempTimer: 0,
+    
+    start(event) { // запускаем бесконечное движение
+        let timerId = setInterval(function() {
+            timer.tempTimer = timerId;
+            game.move(event.keyCode);                  
+            if(game.directionValue != event.keyCode) { //если направление движения изменилось сбросить текущее движение
+                timer.stop();
+            }
+        } , 1000); //скорость движения 1 сек.  
+    },
+
+    stop() {
+        clearInterval(this.tempTimer);
+    },
+}
 /**
  * Основной объект игры.
  */
 const game = {
-    directionValue: 0, //значение нажатой клавиши
-    pauseFlag: 0,
-    eventValue: {},
+    directionValue: 0, //значение нажатой клавиши   
 
     /**
      * Функция ищет HTML элемент контейнера игры на странице.
@@ -43,17 +59,17 @@ const game = {
     /**
      * Функция выполняет старт игры.
      */
-    start() {
+    start() { 
+        board.clear();        
         /*
             без бесконечного движения змейки работает, попытка остановить змейку
             с помощью флага не увенчалась успехом
-        */
+        */        
         game.setGameStatus(GAME_STATUS_STARTED);
         score.startValue();
         board.render();
         snake.render();
-        food.render();
-        game.pauseFlag = 0;
+        food.render();        
     },
 
     /**
@@ -66,8 +82,7 @@ const game = {
         */
         game.setGameStatus(GAME_STATUS_PAUSED);
         board.clear();
-        game.pauseFlag = 1;
-        game.infinityMove(game.eventValue);
+        timer.stop();
         /* добавить сюда код */
     },
 
@@ -82,9 +97,8 @@ const game = {
         game.setGameStatus(GAME_STATUS_STOPPED);
         board.clear();
         snake.clear();
-        food.clear();
-        game.pauseFlag = 1;
-        game.infinityMove(game.eventValue);
+        food.clear();        
+        timer.stop();
     },
 
     /**
@@ -153,20 +167,10 @@ const game = {
         }
 
 
-    },
-
-    infinityMove(event) {  // запускаем бесконечное движение  
-        let timerId = setInterval(function() {
-            game.move(event.keyCode);                  
-            if(game.directionValue != event.keyCode || game.pauseFlag == 1) { //если направление движения изменилось сбросить текущее движение
-                clearInterval(timerId);
-            }
-        } , 1000); //скорость движения 1 сек.       
-    },    
+    }, 
 
     setDirectionValue(event) { //устанавливаем направление движения
-        game.directionValue = event.keyCode;
-        game.eventValue = event;        
+        game.directionValue = event.keyCode;                
     },
 
     /**
@@ -180,7 +184,7 @@ const game = {
 
         // обратить внимание, как сделать красивее
         element.classList.remove(GAME_STATUS_STARTED, GAME_STATUS_PAUSED, GAME_STATUS_STOPPED);
-        element.classList.add(status);
+        element.classList.add(status);        
     }
 };
 
@@ -532,7 +536,7 @@ function init() {
     /* добавляем обработчик при нажатии на любую кнопку на клавиатуре,
      * далее в методе мы будем проверять нужную нам клавишу */
     window.addEventListener('keydown', game.setDirectionValue);
-    window.addEventListener('keydown', game.infinityMove);
+    window.addEventListener('keydown', timer.start);
 }
 
 /**
