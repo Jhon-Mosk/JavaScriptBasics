@@ -20,7 +20,7 @@ const config = {
     /**
      * Размер поля.
      */
-    size: 10
+    size: 20
 };
 
 const timer = {
