@@ -269,7 +269,6 @@ const score = {
     value: 0,        
 
     startValue() {
-        this.value = 0;
         document.getElementById('score-value').innerHTML = this.value;
     },
 
