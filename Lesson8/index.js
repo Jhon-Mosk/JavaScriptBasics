@@ -31,3 +31,9 @@ function a() {
     alert(this);
 }
 a.call(null); // window так как с помощью call this было спрошено до null, а самый главный элемент это window
+
+sayHi("df");
+
+var sayHi = function (name) {
+    console.log(name)
+}
